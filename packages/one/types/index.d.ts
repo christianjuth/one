@@ -35,4 +35,5 @@ export * from '@vxrn/universal-color-scheme';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './router/useNavigation';
 export { useLoader } from './useLoader';
+export { configureNavigationContainer } from "./fork/NavigationContainer";
 //# sourceMappingURL=index.d.ts.map

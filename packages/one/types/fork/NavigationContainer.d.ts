@@ -19,6 +19,7 @@ type Props<ParamList extends {}> = NavigationContainerProps & {
     fallback?: React.ReactNode;
     documentTitle?: DocumentTitleOptions;
 };
+export declare function configureNavigationContainer(config: Pick<NavigationContainerProps, 'initialState' | 'onStateChange'>): void;
 export declare const NavigationContainer: <RootParamList extends {} = ReactNavigation.RootParamList>(props: Props<RootParamList> & {
     ref?: React.Ref<NavigationContainerRef<RootParamList>>;
 }) => React.ReactElement;

@@ -60,6 +60,16 @@ type Props<ParamList extends {}> = NavigationContainerProps & {
   documentTitle?: DocumentTitleOptions
 }
 
+const userNavigationContainerConfig: {
+  config: null | Pick<NavigationContainerProps, 'initialState' | 'onStateChange'>
+} = {
+  config: null
+}
+
+export function configureNavigationContainer(config: Pick<NavigationContainerProps, 'initialState' | 'onStateChange'>) {
+  userNavigationContainerConfig.config = config;
+}
+
 /**
  * Container component which holds the navigation state designed for React Native apps.
  * This should be rendered at the root wrapping the whole app.
@@ -142,6 +152,7 @@ function NavigationContainerInner(
         return previousLastUnhandledLink
       })
       onStateChange?.(state)
+      userNavigationContainerConfig.config?.onStateChange?.(state);
     }
   )
   // Add additional linking related info to the ref
@@ -184,7 +195,7 @@ function NavigationContainerInner(
             theme={theme}
             onReady={onReadyForLinkingHandling}
             onStateChange={onStateChangeForLinkingHandling}
-            initialState={rest.initialState == null ? initialState : rest.initialState}
+            initialState={userNavigationContainerConfig.config?.initialState ?? (rest.initialState == null ? initialState : rest.initialState)}
             ref={refContainer}
           />
         </LinkingContext.Provider>
